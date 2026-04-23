@@ -1,25 +1,41 @@
 package co.simplon.wishmegift.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String firstname;
+
+    @Column(nullable = false)
     private String lastname;
+
+    @Column(nullable = false,  unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private Date birthday;
+
+    @OneToMany(mappedBy = "user")
+    private List<Wishlist> wishlists;
+
+    @OneToOne
+    private Gift gift;
 
     public User() {
     }
-
-
 
     public Long getId() {
         return id;
@@ -53,11 +69,31 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public List<Wishlist> getWishlists() {
+        return wishlists;
+    }
+
+    public void setWishlists(List<Wishlist> wishlists) {
+        this.wishlists = wishlists;
+    }
+
+    public Gift getGift() {
+        return gift;
+    }
+
+    public void setGift(Gift gift) {
+        this.gift = gift;
     }
 }
