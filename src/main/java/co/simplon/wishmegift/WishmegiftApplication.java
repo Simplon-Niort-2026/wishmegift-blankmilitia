@@ -1,4 +1,4 @@
-package co.simplon.wishmegift;
+package main.java.co.simplon.wishmegift;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
