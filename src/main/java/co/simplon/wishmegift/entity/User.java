@@ -2,6 +2,7 @@ package co.simplon.wishmegift.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -25,8 +26,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private Date birthday;
+    private LocalDate birthday;
 
     @OneToMany(mappedBy = "user")
     private List<Wishlist> wishlists;
@@ -73,11 +73,11 @@ public class User {
         this.password = password;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
