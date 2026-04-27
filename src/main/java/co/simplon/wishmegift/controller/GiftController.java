@@ -1,0 +1,57 @@
+package co.simplon.wishmegift.controller;
+
+import co.simplon.wishmegift.entity.Gift;
+import co.simplon.wishmegift.service.GiftService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/gifts")
+public class GiftController {
+    private final GiftService giftService;
+
+    public GiftController(GiftService giftService) {
+        this.giftService = giftService;
+    }
+
+    @GetMapping
+    public List<Gift> getAllGifts() {
+        return giftService.getAllGifts();
+    }
+
+    @GetMapping("/{id}")
+    public Gift getGiftById(@PathVariable Long id) {
+        return giftService.getGiftById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<Gift> addGiftToList(@RequestBody Gift gift) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(giftService.save(gift));
+    }
+
+    @PutMapping("/{id}")
+    public Gift updateGift(@PathVariable Long id, @RequestBody Gift gift) {
+        Gift existingGift = giftService.getGiftById(id);
+        if (existingGift == null) {
+            return null;
+        }
+
+        existingGift.setName(gift.getName());
+        existingGift.setDescription(gift.getDescription());
+        existingGift.setLink(gift.getLink());
+        existingGift.setWishLevel(gift.getWishLevel());
+        existingGift.setPrice(gift.getPrice());
+        existingGift.setBook(gift.getBook());
+        existingGift.setWishlist(gift.getWishlist());
+        existingGift.setUser(gift.getUser());
+        return giftService.save(existingGift);
+    }
+
+
+
+
+}
