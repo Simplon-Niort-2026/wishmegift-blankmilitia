@@ -21,10 +21,10 @@ public class UserController {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserController(UserService userServiceInjected, UserRepository userRepository, UserMapper userMapper) {
-        userService = userServiceInjected;
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
+    public UserController(UserService userServiceInjected, UserRepository userRepositoryInjected, UserMapper userMapperInjected) {
+        this.userService = userServiceInjected;
+        this.userRepository = userRepositoryInjected;
+        this.userMapper = userMapperInjected;
     }
 
     @GetMapping
