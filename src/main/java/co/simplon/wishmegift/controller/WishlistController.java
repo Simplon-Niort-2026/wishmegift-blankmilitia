@@ -3,6 +3,7 @@ package co.simplon.wishmegift.controller;
 import co.simplon.wishmegift.entity.Wishlist;
 
 import co.simplon.wishmegift.service.WishlistService;
+import co.simplon.wishmegift.service.impl.WishlistServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ class WishlistController {
 
     private final WishlistService wishlistService;
 
-    public WishlistController(WishlistService wishlistService) {
-        this.wishlistService = wishlistService;
+    public WishlistController(WishlistService wishlistServiceInjected) {
+        this.wishlistService = wishlistServiceInjected;
     }
 
     @PostMapping
