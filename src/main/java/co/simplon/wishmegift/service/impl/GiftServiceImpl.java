@@ -35,20 +35,25 @@ public class GiftServiceImpl implements GiftService {
     }
 
     @Override
-    public Gift updateGift(Gift gift) {
+    public Gift updateGift(Gift existingGift,  Gift gift) {
         if (gift == null) {
             return null;
         }
 
-        gift.setName(gift.getName());
-        gift.setDescription(gift.getDescription());
-        gift.setLink(gift.getLink());
-        gift.setWishLevel(gift.getWishLevel());
-        gift.setPrice(gift.getPrice());
-        gift.setBook(gift.getBook());
-        gift.setWishlist(gift.getWishlist());
-        gift.setUser(gift.getUser());
-        return giftRepository.save(gift);
+        existingGift.setName(gift.getName());
+        existingGift.setDescription(gift.getDescription());
+        existingGift.setLink(gift.getLink());
+        existingGift.setWishLevel(gift.getWishLevel());
+        existingGift.setPrice(gift.getPrice());
+        existingGift.setBook(gift.getBook());
+        existingGift.setWishlist(gift.getWishlist());
+        existingGift.setUser(gift.getUser());
+        return giftRepository.save(existingGift);
+    }
+
+    @Override
+    public void deleteGift(Long id){
+       giftRepository.deleteById(id);
     }
 
 }
