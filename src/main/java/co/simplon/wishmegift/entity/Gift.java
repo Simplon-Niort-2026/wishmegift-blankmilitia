@@ -24,7 +24,7 @@ public class Gift {
     private Double price;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
-    private Boolean isBook;
+    private Boolean isBook = false;
 
     @ManyToOne
     @JoinColumn(name = "wishlist_id")
