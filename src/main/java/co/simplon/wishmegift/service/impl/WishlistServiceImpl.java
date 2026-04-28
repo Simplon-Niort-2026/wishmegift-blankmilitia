@@ -1,11 +1,8 @@
 package co.simplon.wishmegift.service.impl;
 
 import co.simplon.wishmegift.dto.WishlistDTO;
-import co.simplon.wishmegift.dto.WishlistShareRequestDTO;
-import co.simplon.wishmegift.entity.User;
 import co.simplon.wishmegift.entity.Wishlist;
 import co.simplon.wishmegift.mapper.WishlistMapper;
-import co.simplon.wishmegift.repository.UserRepository;
 import co.simplon.wishmegift.repository.WishlistRepository;
 import co.simplon.wishmegift.service.WishlistService;
 import org.springframework.stereotype.Service;
@@ -16,14 +13,11 @@ import java.util.List;
 public class WishlistServiceImpl implements WishlistService {
 
     private final WishlistRepository wishlistRepository;
-    private final UserRepository userRepository;
     private final WishlistMapper wishlistMapper;
 
     public WishlistServiceImpl(WishlistRepository wishlistRepository,
-                               UserRepository userRepository,
                                WishlistMapper wishlistMapper) {
         this.wishlistRepository = wishlistRepository;
-        this.userRepository = userRepository;
         this.wishlistMapper = wishlistMapper;
     }
 
@@ -45,22 +39,6 @@ public class WishlistServiceImpl implements WishlistService {
                 wishlistRepository.findById(id)
                         .orElseThrow(() -> new RuntimeException("Liste introuvable"))
         );
-    }
-
-    @Override
-    public void shareWishlist(Long wishlistId, Long currentUserId, WishlistShareRequestDTO dto) {
-        Wishlist wishlist = wishlistRepository.findById(wishlistId)
-                .orElseThrow(() -> new RuntimeException("Liste de souhait introuvable."));
-
-        User targetUser = userRepository.findByEmail(dto.getTargetUserEmail())
-                .orElseThrow(() -> new RuntimeException("Aucun utilisateur associé à cet email."));
-
-        if (wishlist.getSharedWith().contains(targetUser)) {
-            throw new RuntimeException("Cette liste est déjà partagée avec cet utilisateur.");
-        }
-
-        wishlist.getSharedWith().add(targetUser);
-        wishlistRepository.save(wishlist);
     }
 
     @Override

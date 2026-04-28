@@ -14,7 +14,5 @@ public interface WishlistService {
 
     WishlistDTO getById(Long id);
 
-    void shareWishlist(Long wishlistId, Long currentUserId, WishlistShareRequestDTO dto);
-
     void delete(Long id);
 }
