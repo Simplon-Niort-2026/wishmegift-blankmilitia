@@ -5,6 +5,9 @@ import co.simplon.wishmegift.entity.Wishlist;
 import co.simplon.wishmegift.repository.GiftRepository;
 import co.simplon.wishmegift.service.GiftService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.List;
 
 @Service
@@ -28,6 +31,23 @@ public class GiftServiceImpl implements GiftService {
 
     @Override
     public Gift save(Gift gift) {
+        return giftRepository.save(gift);
+    }
+
+    @Override
+    public Gift updateGift(Gift gift) {
+        if (gift == null) {
+            return null;
+        }
+
+        gift.setName(gift.getName());
+        gift.setDescription(gift.getDescription());
+        gift.setLink(gift.getLink());
+        gift.setWishLevel(gift.getWishLevel());
+        gift.setPrice(gift.getPrice());
+        gift.setBook(gift.getBook());
+        gift.setWishlist(gift.getWishlist());
+        gift.setUser(gift.getUser());
         return giftRepository.save(gift);
     }
 

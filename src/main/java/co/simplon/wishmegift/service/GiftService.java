@@ -12,4 +12,6 @@ public interface GiftService {
     public Gift getGiftById(Long id);
 
     public Gift save(Gift gift);
+
+    public Gift updateGift(Gift gift);
 }

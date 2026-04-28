@@ -36,19 +36,7 @@ public class GiftController {
     @PutMapping("/{id}")
     public Gift updateGift(@PathVariable Long id, @RequestBody Gift gift) {
         Gift existingGift = giftService.getGiftById(id);
-        if (existingGift == null) {
-            return null;
-        }
-
-        existingGift.setName(gift.getName());
-        existingGift.setDescription(gift.getDescription());
-        existingGift.setLink(gift.getLink());
-        existingGift.setWishLevel(gift.getWishLevel());
-        existingGift.setPrice(gift.getPrice());
-        existingGift.setBook(gift.getBook());
-        existingGift.setWishlist(gift.getWishlist());
-        existingGift.setUser(gift.getUser());
-        return giftService.save(existingGift);
+        return giftService.updateGift(existingGift);
     }
 
 
