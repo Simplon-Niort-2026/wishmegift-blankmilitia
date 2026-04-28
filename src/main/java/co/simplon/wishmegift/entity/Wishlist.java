@@ -1,8 +1,9 @@
 package co.simplon.wishmegift.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -19,25 +20,19 @@ public class Wishlist {
     private String description;
 
     @Column(nullable = false)
-    private Date eventDate;
+    private LocalDate eventDate;
 
     @Enumerated(EnumType.STRING)
     private Theme theme;
 
     @ManyToOne
     @JoinColumn(name = "users_id")
+    @JsonIgnoreProperties({"wishlist"})
     private User user;
 
     @OneToMany(mappedBy = "wishlist")
+    @JsonIgnoreProperties({"wishlist"})
     private List<Gift> gifts;
-
-    @ManyToMany
-    @JoinTable(
-            name = "wishlist_shares",
-            joinColumns = @JoinColumn(name = "wishlist_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private List<User> sharedWith = new ArrayList<>();
 
     public Wishlist() {
     }
@@ -66,11 +61,11 @@ public class Wishlist {
         this.description = description;
     }
 
-    public Date getEventDate() {
+    public LocalDate getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
     }
 
@@ -96,13 +91,5 @@ public class Wishlist {
 
     public void setGifts(List<Gift> gifts) {
         this.gifts = gifts;
-    }
-
-    public List<User> getSharedWith() {
-        return sharedWith;
-    }
-
-    public void setSharedWith(List<User> sharedWith) {
-        this.sharedWith = sharedWith;
     }
 }
