@@ -2,6 +2,7 @@ package co.simplon.wishmegift.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,14 @@ public class Wishlist {
 
     @OneToMany(mappedBy = "wishlist")
     private List<Gift> gifts;
+
+    @ManyToMany
+    @JoinTable(
+            name = "wishlist_shares",
+            joinColumns = @JoinColumn(name = "wishlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> sharedWith = new ArrayList<>();
 
     public Wishlist() {
     }
@@ -87,5 +96,13 @@ public class Wishlist {
 
     public void setGifts(List<Gift> gifts) {
         this.gifts = gifts;
+    }
+
+    public List<User> getSharedWith() {
+        return sharedWith;
+    }
+
+    public void setSharedWith(List<User> sharedWith) {
+        this.sharedWith = sharedWith;
     }
 }

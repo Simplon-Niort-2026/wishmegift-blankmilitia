@@ -1,15 +1,20 @@
 package co.simplon.wishmegift.service;
 
+import co.simplon.wishmegift.dto.WishlistDTO;
+import co.simplon.wishmegift.dto.WishlistShareRequestDTO;
 import co.simplon.wishmegift.entity.Wishlist;
 
 import java.util.List;
 
 public interface WishlistService {
-    Wishlist create(Wishlist wishlist);
 
-    List<Wishlist> getAll();
+    WishlistDTO create(Wishlist wishlist);
 
-    Wishlist getById(Long id);
+    List<WishlistDTO> getAll();
+
+    WishlistDTO getById(Long id);
+
+    void shareWishlist(Long wishlistId, Long currentUserId, WishlistShareRequestDTO dto);
 
     void delete(Long id);
 }
