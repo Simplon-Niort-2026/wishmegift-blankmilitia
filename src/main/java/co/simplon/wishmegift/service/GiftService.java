@@ -13,5 +13,7 @@ public interface GiftService {
 
     public Gift save(Gift gift);
 
-    public Gift updateGift(Gift gift);
+    public Gift updateGift(Gift existingGift, Gift gift);
+
+    public void deleteGift(Long id);
 }
