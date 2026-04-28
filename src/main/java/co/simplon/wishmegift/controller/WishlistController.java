@@ -1,5 +1,6 @@
 package co.simplon.wishmegift.controller;
 
+import co.simplon.wishmegift.dto.WishlistDTO;
 import co.simplon.wishmegift.entity.Wishlist;
 
 import co.simplon.wishmegift.service.WishlistService;
@@ -15,28 +16,23 @@ class WishlistController {
 
     private final WishlistService wishlistService;
 
-    public WishlistController(WishlistService wishlistService) {
-        this.wishlistService = wishlistService;
+    public WishlistController(WishlistService wishlistServiceInjected) {
+        this.wishlistService = wishlistServiceInjected;
     }
 
     @PostMapping
-    public ResponseEntity<Wishlist> create(@RequestBody Wishlist wishlist) {
+    public ResponseEntity<WishlistDTO> create(@RequestBody Wishlist wishlist) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(wishlistService.create(wishlist));
     }
 
-    @GetMapping("/share/{userId}")
-    public ResponseEntity<List<Wishlist>> getSharedWithUser(@PathVariable Long userId) {
-        return ResponseEntity.ok(wishlistService.getSharedWithUserWishlists(userId));
-    }
-
     @GetMapping
-    public ResponseEntity<List<Wishlist>> getAll() {
+    public ResponseEntity<List<WishlistDTO>> getAll() {
         return ResponseEntity.ok(wishlistService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Wishlist> getById(@PathVariable Long id) {
+    public ResponseEntity<WishlistDTO> getById(@PathVariable Long id) {
         return ResponseEntity.ok(wishlistService.getById(id));
     }
 
