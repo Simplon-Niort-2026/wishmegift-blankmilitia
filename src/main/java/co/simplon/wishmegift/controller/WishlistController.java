@@ -25,6 +25,11 @@ class WishlistController {
                 .body(wishlistService.create(wishlist));
     }
 
+    @GetMapping("/share/{userId}")
+    public ResponseEntity<List<Wishlist>> getSharedWithUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(wishlistService.getSharedWithUserWishlists(userId));
+    }
+
     @GetMapping
     public ResponseEntity<List<Wishlist>> getAll() {
         return ResponseEntity.ok(wishlistService.getAll());
