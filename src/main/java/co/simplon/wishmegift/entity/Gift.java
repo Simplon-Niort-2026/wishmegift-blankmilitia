@@ -1,5 +1,6 @@
 package co.simplon.wishmegift.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -28,6 +29,7 @@ public class Gift {
 
     @ManyToOne
     @JoinColumn(name = "wishlist_id")
+    @JsonIgnoreProperties({"gifts"})
     private Wishlist wishlist;
 
     @OneToOne
