@@ -22,7 +22,6 @@ public class Share {
 
 
     public Share() {
-        super();
     }
 
     public Long getId() {
