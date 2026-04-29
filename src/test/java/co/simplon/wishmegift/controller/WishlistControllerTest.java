@@ -17,8 +17,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(WishlistController.class)
 class WishlistControllerTest {
@@ -74,7 +73,8 @@ class WishlistControllerTest {
         when(wishlistService.getById(99L)).thenThrow(new RuntimeException("Liste introuvable"));
 
         mockMvc.perform(get("/wishlists/99"))
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string("Liste introuvable"));
     }
 
     @Test

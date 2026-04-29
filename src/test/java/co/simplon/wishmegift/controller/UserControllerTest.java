@@ -17,8 +17,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(UserController.class)
 class UserControllerTest {
@@ -57,7 +56,8 @@ class UserControllerTest {
         when(userService.getUserById(99L)).thenThrow(new RuntimeException("Utilisateur introuvable."));
 
         mockMvc.perform(get("/users/99"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string("Utilisateur introuvable."));
     }
 
     @Test
@@ -84,13 +84,13 @@ class UserControllerTest {
     }
 
     @Test
-    void createUser_shouldReturn500_whenPasswordsDoNotMatch() throws Exception {
+    void createUser_shouldReturn400_whenPasswordsDoNotMatch() throws Exception {
         UserCreateDTO createDTO = new UserCreateDTO();
         createDTO.setFirstname("Alice");
         createDTO.setLastname("Martin");
         createDTO.setEmail("alice@example.com");
         createDTO.setPassword("1234@!azerTY");
-        createDTO.setConfirmPassword("1234@!azerTY888");
+        createDTO.setConfirmPassword("azerTY@!1234");
 
         when(userService.createUser(any(UserCreateDTO.class)))
                 .thenThrow(new IllegalArgumentException("Les mots de passe ne correspondent pas."));
@@ -98,6 +98,7 @@ class UserControllerTest {
         mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(createDTO)))
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Les mots de passe ne correspondent pas."));
     }
 }

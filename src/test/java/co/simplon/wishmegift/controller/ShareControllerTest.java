@@ -14,14 +14,12 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ShareController.class)
 class ShareControllerTest {
@@ -99,9 +97,8 @@ class ShareControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("UTILISATEUR-CONNECTE", "1")
                         .content(objectMapper.writeValueAsString(requestDTO)))
-                .andExpect(result -> assertThat(result.getResolvedException())
-                        .isInstanceOf(RuntimeException.class)
-                        .hasMessage("Cette liste est déjà partagée avec cet utilisateur."));
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string("Cette liste est déjà partagée avec cet utilisateur."));
     }
 
     @Test
