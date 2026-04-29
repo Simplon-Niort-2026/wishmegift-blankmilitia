@@ -3,11 +3,17 @@ package co.simplon.wishmegift.mapper;
 import co.simplon.wishmegift.dto.UserCreateDTO;
 import co.simplon.wishmegift.dto.UserDTO;
 import co.simplon.wishmegift.entity.User;
-import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
+
+    private final PasswordEncoder passwordEncoder;
+
+    public UserMapper(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public UserDTO toDTO(User user) {
         UserDTO dto = new UserDTO();
@@ -23,7 +29,7 @@ public class UserMapper {
         user.setFirstname(userCreateDto.getFirstname());
         user.setLastname(userCreateDto.getLastname());
         user.setEmail(userCreateDto.getEmail());
-        user.setPassword(BCrypt.hashpw(userCreateDto.getPassword(), BCrypt.gensalt(12)));
+        user.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
         return user;
     }
 
