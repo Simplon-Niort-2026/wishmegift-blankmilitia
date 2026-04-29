@@ -36,10 +36,11 @@ public class GiftController {
     @PutMapping("/{id}")
     public Gift updateGift(@PathVariable Long id, @RequestBody Gift gift) {
         Gift existingGift = giftService.getGiftById(id);
-        return giftService.updateGift(existingGift);
+        return giftService.updateGift(existingGift, gift);
     }
 
-
-
-
+    @DeleteMapping("/{id}")
+    public void deleteGiftById(@PathVariable Long id) {
+        giftService.deleteGift(id);
+    }
 }

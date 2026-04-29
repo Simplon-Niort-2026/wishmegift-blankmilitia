@@ -1,0 +1,27 @@
+meta {
+  name: Partager Wishlist
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:8080/wishlists/1/shares
+  body: json
+  auth: inherit
+}
+
+headers {
+  UTILISATEUR-CONNECTE: 1
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "targetUserEmail": "tom.smith@example.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

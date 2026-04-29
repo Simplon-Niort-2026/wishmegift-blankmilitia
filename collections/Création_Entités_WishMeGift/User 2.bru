@@ -1,0 +1,27 @@
+meta {
+  name: User 2
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/users
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "firstname" : "Tom",
+      "lastname" : "Smith", 
+      "email" : "tom.smith@example.com",
+      "password" : "1234@!azerTY",
+      "confirmPassword" : "1234@!azerTY",
+      "birthday" : "1973-08-12"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
