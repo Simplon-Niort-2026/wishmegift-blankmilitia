@@ -32,7 +32,9 @@ public class Gift {
     @JsonIgnoreProperties({"gifts"})
     private Wishlist wishlist;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"gifts"})
     private User user;
 
     public Gift() {

@@ -31,8 +31,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Wishlist> wishlists;
 
-    @OneToOne
-    private Gift gift;
+    @OneToMany(mappedBy = "user")
+    private List<Gift> gifts;
 
     public User() {
     }
@@ -99,11 +99,11 @@ public class User {
         this.wishlists = wishlists;
     }
 
-    public Gift getGift() {
-        return gift;
+    public List<Gift> getGifts() {
+        return gifts;
     }
 
-    public void setGift(Gift gift) {
-        this.gift = gift;
+    public void setGifts(List<Gift> gifts) {
+        this.gifts = gifts;
     }
 }

@@ -1,0 +1,25 @@
+meta {
+  name: Wishlist
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/wishlists
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Ma liste de Noël 1",
+    "theme": "CHRISTMAS_LIST",
+    "description": "Mes cadeaux préférés",
+    "eventDate": "2024-12-25"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

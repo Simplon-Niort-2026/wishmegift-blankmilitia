@@ -1,0 +1,28 @@
+meta {
+  name: Gift 1
+  type: http
+  seq: 1
+}
+
+put {
+  url: http://localhost:8080/gifts/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "PS5",
+    "description": "une PS5",
+    "link": "lien de la PS5",
+    "wishLevel": 5,
+    "isBook": false,
+    "price": 699.90,
+    "user": {"id":1}
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
