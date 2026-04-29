@@ -1,0 +1,29 @@
+meta {
+  name: Gift 2
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:8080/gifts
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Coffret DVD Harry Potter",
+    "description": "l'intégrale de la Saga Harry Potter",
+    "link": "lien du coffret",
+    "wishLevel": 3,
+    "isBook": false,
+    "price": 30.00,
+    "user": {"id":1},
+    "wishlist": {"id":1}
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

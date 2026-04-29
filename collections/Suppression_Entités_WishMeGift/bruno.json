@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Suppression_Entités_WishMeGift",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
