@@ -1,12 +1,9 @@
 package co.simplon.wishmegift.service.impl;
 
 import co.simplon.wishmegift.entity.Gift;
-import co.simplon.wishmegift.entity.Wishlist;
 import co.simplon.wishmegift.repository.GiftRepository;
 import co.simplon.wishmegift.service.GiftService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class GiftServiceImpl implements GiftService {
     }
 
     @Override
-    public Gift updateGift(Gift existingGift,  Gift gift) {
+    public Gift updateGift(Gift existingGift, Gift gift) {
         if (gift == null) {
             return null;
         }
@@ -52,8 +49,8 @@ public class GiftServiceImpl implements GiftService {
     }
 
     @Override
-    public void deleteGift(Long id){
-       giftRepository.deleteById(id);
+    public void deleteGift(Long id) {
+        giftRepository.deleteById(id);
     }
 
 }

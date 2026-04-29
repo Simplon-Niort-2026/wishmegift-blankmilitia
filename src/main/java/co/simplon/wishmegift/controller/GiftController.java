@@ -3,7 +3,6 @@ package co.simplon.wishmegift.controller;
 import co.simplon.wishmegift.entity.Gift;
 import co.simplon.wishmegift.service.GiftService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,7 +2,6 @@ package co.simplon.wishmegift.controller;
 
 import co.simplon.wishmegift.dto.UserCreateDTO;
 import co.simplon.wishmegift.dto.UserDTO;
-import co.simplon.wishmegift.entity.User;
 import co.simplon.wishmegift.mapper.UserMapper;
 import co.simplon.wishmegift.repository.UserRepository;
 import co.simplon.wishmegift.service.UserService;
