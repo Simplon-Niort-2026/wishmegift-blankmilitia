@@ -2,13 +2,8 @@ package co.simplon.wishmegift.mapper;
 
 import co.simplon.wishmegift.dto.WishlistDTO;
 import co.simplon.wishmegift.entity.Gift;
-import co.simplon.wishmegift.entity.Theme;
-import co.simplon.wishmegift.entity.User;
 import co.simplon.wishmegift.entity.Wishlist;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Component
 public class WishlistMapper {

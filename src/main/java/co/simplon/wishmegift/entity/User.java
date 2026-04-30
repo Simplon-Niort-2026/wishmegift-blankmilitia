@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,7 +20,7 @@ public class User {
     @Column(nullable = false)
     private String lastname;
 
-    @Column(nullable = false,  unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)

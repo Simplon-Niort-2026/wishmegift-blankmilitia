@@ -1,10 +1,5 @@
 package co.simplon.wishmegift.dto;
 
-import co.simplon.wishmegift.entity.User;
-import co.simplon.wishmegift.entity.Wishlist;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-
 public class GiftDTO {
 
     private Long id;
