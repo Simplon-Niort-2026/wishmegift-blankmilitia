@@ -1,7 +1,6 @@
 package co.simplon.wishmegift.service;
 
 import co.simplon.wishmegift.dto.WishlistDTO;
-import co.simplon.wishmegift.dto.WishlistShareRequestDTO;
 import co.simplon.wishmegift.entity.Wishlist;
 
 import java.util.List;

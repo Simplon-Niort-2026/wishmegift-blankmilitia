@@ -22,7 +22,7 @@ public class BookGiftController {
     }
 
     @PostMapping
-    public ResponseEntity<BookGift> addBookGift(@RequestBody BookGift bookGift){
+    public ResponseEntity<BookGift> addBookGift(@RequestBody BookGift bookGift) {
         return ResponseEntity.status(HttpStatus.CREATED).body(bookGiftService.reserve(bookGift));
     }
 

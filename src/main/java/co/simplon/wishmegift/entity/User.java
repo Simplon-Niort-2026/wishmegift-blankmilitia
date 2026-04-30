@@ -1,9 +1,9 @@
 package co.simplon.wishmegift.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,7 +20,7 @@ public class User {
     @Column(nullable = false)
     private String lastname;
 
-    @Column(nullable = false,  unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -29,9 +29,11 @@ public class User {
     private LocalDate birthday;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user", "gifts"})
     private List<Wishlist> wishlists;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user", "wishlist"})
     private List<Gift> gifts;
 
     public User() {

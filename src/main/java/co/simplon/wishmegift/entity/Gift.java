@@ -29,12 +29,12 @@ public class Gift {
 
     @ManyToOne
     @JoinColumn(name = "wishlist_id")
-    @JsonIgnoreProperties({"gifts"})
+    @JsonIgnoreProperties({"gifts", "user"})
     private Wishlist wishlist;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"gifts"})
+    @JsonIgnoreProperties({"gifts", "wishlists"})
     private User user;
 
     public Gift() {
