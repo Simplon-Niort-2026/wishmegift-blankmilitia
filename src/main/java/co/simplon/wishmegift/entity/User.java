@@ -1,7 +1,7 @@
 package co.simplon.wishmegift.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -25,9 +25,11 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user", "gifts"})
     private List<Wishlist> wishlists;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user", "wishlist"})
     private List<Gift> gifts;
 
     @Enumerated(EnumType.STRING)

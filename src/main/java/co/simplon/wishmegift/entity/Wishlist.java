@@ -18,7 +18,7 @@ public class Wishlist {
 
     private String description;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate eventDate;
 
     @Enumerated(EnumType.STRING)
@@ -26,11 +26,11 @@ public class Wishlist {
 
     @ManyToOne
     @JoinColumn(name = "users_id")
-    @JsonIgnoreProperties({"wishlist"})
+    @JsonIgnoreProperties({"wishlist", "gifts"})
     private User user;
 
     @OneToMany(mappedBy = "wishlist")
-    @JsonIgnoreProperties({"wishlist"})
+    @JsonIgnoreProperties({"wishlist", "user"})
     private List<Gift> gifts;
 
     public Wishlist() {

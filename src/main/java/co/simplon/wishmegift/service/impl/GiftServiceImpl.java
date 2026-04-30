@@ -1,12 +1,12 @@
 package co.simplon.wishmegift.service.impl;
 
+import co.simplon.wishmegift.dto.GiftDTO;
 import co.simplon.wishmegift.entity.Gift;
-import co.simplon.wishmegift.entity.Wishlist;
+import co.simplon.wishmegift.mapper.GiftMapper;
 import co.simplon.wishmegift.repository.GiftRepository;
 import co.simplon.wishmegift.service.GiftService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.List;
 
@@ -14,46 +14,51 @@ import java.util.List;
 public class GiftServiceImpl implements GiftService {
 
     private final GiftRepository giftRepository;
+    private final GiftMapper giftMapper;
 
-    public GiftServiceImpl(GiftRepository giftRepository) {
+    public GiftServiceImpl(GiftRepository giftRepository, GiftMapper giftMapper) {
         this.giftRepository = giftRepository;
+        this.giftMapper = giftMapper;
     }
 
     @Override
-    public List<Gift> getAllGifts() {
-        return giftRepository.findAll();
+    public List<GiftDTO> getAll() {
+        return giftRepository.findAll().stream()
+                .map(giftMapper::toDTO)
+                .toList();
     }
 
     @Override
-    public Gift getGiftById(Long id) {
-        return giftRepository.findById(id).orElse(null);
+    public GiftDTO getGiftById(Long id) {
+        Gift gift = giftRepository.findById(id).orElse(null);
+        return giftMapper.toDTO(gift);
     }
 
     @Override
-    public Gift save(Gift gift) {
-        return giftRepository.save(gift);
+    public GiftDTO save(Gift gift) {
+        return giftMapper.toDTO(giftRepository.save(gift));
     }
 
     @Override
-    public Gift updateGift(Gift existingGift,  Gift gift) {
+    public GiftDTO updateGift(Gift gift) {
         if (gift == null) {
             return null;
         }
 
-        existingGift.setName(gift.getName());
-        existingGift.setDescription(gift.getDescription());
-        existingGift.setLink(gift.getLink());
-        existingGift.setWishLevel(gift.getWishLevel());
-        existingGift.setPrice(gift.getPrice());
-        existingGift.setBook(gift.getBook());
-        existingGift.setWishlist(gift.getWishlist());
-        existingGift.setUser(gift.getUser());
-        return giftRepository.save(existingGift);
+        gift.setName(gift.getName());
+        gift.setDescription(gift.getDescription());
+        gift.setLink(gift.getLink());
+        gift.setWishLevel(gift.getWishLevel());
+        gift.setPrice(gift.getPrice());
+        gift.setBook(gift.getBook());
+        gift.setWishlist(gift.getWishlist());
+        gift.setUser(gift.getUser());
+        return giftMapper.toDTO(giftRepository.save(gift));
     }
 
     @Override
-    public void deleteGift(Long id){
-       giftRepository.deleteById(id);
+    public void deleteGift(Long id) {
+        giftRepository.deleteById(id);
     }
 
 }
