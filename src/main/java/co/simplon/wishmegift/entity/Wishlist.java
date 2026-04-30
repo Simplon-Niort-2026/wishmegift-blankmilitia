@@ -18,7 +18,7 @@ public class Wishlist {
 
     private String description;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate eventDate;
 
     @Enumerated(EnumType.STRING)
