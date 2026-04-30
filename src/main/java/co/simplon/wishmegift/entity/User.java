@@ -2,8 +2,6 @@ package co.simplon.wishmegift.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -26,8 +24,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private LocalDate birthday;
-
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"user", "gifts"})
     private List<Wishlist> wishlists;
@@ -35,6 +31,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"user", "wishlist"})
     private List<Gift> gifts;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role = Role.USER;
 
     public User() {
     }
@@ -85,14 +85,6 @@ public class User {
         this.password = password;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
     public List<Wishlist> getWishlists() {
         return wishlists;
     }
@@ -107,5 +99,17 @@ public class User {
 
     public void setGifts(List<Gift> gifts) {
         this.gifts = gifts;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
