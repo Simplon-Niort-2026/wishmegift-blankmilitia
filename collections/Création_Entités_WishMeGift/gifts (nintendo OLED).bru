@@ -1,0 +1,29 @@
+meta {
+  name: /gifts (nintendo OLED)
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:8080/gifts
+  body: json
+  auth: inherit
+}
+
+body:json {
+    {
+      "name": "Nintendo Switch OLED",
+      "description": "Console portable avec écran OLED",
+      "link": "https://example.com/switch-oled",
+      "wishLevel": 4,
+      "isBook": false,
+      "price": 349.99,
+      "user": { "id": 1 },
+      "wishlist": { "id": 1 }
+    }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

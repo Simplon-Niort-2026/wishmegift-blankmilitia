@@ -1,0 +1,37 @@
+meta {
+  name: /login
+  type: http
+  seq: 11
+}
+
+post {
+  url: http://localhost:8080/login?username=admin@test.com&password=1234@!azerTY
+  body: none
+  auth: basic
+}
+
+params:query {
+  username: admin@test.com
+  password: 1234@!azerTY
+}
+
+auth:basic {
+  username: admin@test.com
+  password: 1234@!azerTY
+}
+
+script:post-response {
+  const cookie = res.headers['set-cookie'];
+  if (cookie) {
+      const jsessionid = cookie.find(c => c.startsWith('JSESSIONID'));
+      if (jsessionid) {
+          const value = jsessionid.split(';')[0].split('=')[1];
+          bru.setEnvVar('sessionId', value);
+      }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

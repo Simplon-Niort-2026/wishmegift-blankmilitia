@@ -1,11 +1,11 @@
 meta {
-  name: Gift 1
+  name: /gifts/:id
   type: http
-  seq: 5
+  seq: 1
 }
 
-post {
-  url: http://localhost:8080/gifts
+put {
+  url: http://localhost:8080/gifts/1
   body: json
   auth: inherit
 }
@@ -13,13 +13,12 @@ post {
 body:json {
   {
     "name": "PS5",
-    "description": "une PS5 avec lecteur CD",
+    "description": "une PS5",
     "link": "lien de la PS5",
     "wishLevel": 5,
     "isBook": false,
-    "price": 599.90,
-    "user": {"id":1},
-    "wishlist": {"id":1}
+    "price": 699.90,
+    "user": {"id":1}
   }
 }
 

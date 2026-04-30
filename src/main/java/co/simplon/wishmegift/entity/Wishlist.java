@@ -29,7 +29,7 @@ public class Wishlist {
     @JsonIgnoreProperties({"wishlist", "gifts"})
     private User user;
 
-    @OneToMany(mappedBy = "wishlist")
+    @OneToMany(mappedBy = "wishlist", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties({"wishlist", "user"})
     private List<Gift> gifts;
 

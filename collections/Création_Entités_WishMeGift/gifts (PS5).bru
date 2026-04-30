@@ -1,0 +1,29 @@
+meta {
+  name: /gifts (PS5)
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:8080/gifts
+  body: json
+  auth: inherit
+}
+
+body:json {
+    {
+      "name": "PS5",
+      "description": "Une PS5 avec lecteur CD",
+      "link": "https://example.com/ps5",
+      "wishLevel": 5,
+      "isBook": false,
+      "price": 599.90,
+      "user": { "id": 1 },
+      "wishlist": { "id": 1 }
+    }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
