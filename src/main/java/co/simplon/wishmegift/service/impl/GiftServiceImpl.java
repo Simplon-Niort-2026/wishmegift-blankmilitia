@@ -57,8 +57,8 @@ public class GiftServiceImpl implements GiftService {
     }
 
     @Override
-    public void deleteGift(Long id){
-       giftRepository.deleteById(id);
+    public void deleteGift(Long id) {
+        giftRepository.deleteById(id);
     }
 
 }
