@@ -15,11 +15,18 @@ public class WishlistMapper {
         dto.setDescription(wishlist.getDescription());
         dto.setEventDate(wishlist.getEventDate());
         dto.setTheme(wishlist.getTheme());
-        dto.setUserFirstname(wishlist.getUser().getFirstname());
-        dto.setUserLastname(wishlist.getUser().getLastname());
-        dto.setGiftsNames(wishlist.getGifts().stream()
-                .map(Gift::getName).toList());
 
+        if (wishlist.getUser() != null) {
+            dto.setUserFirstname(wishlist.getUser().getFirstname());
+            dto.setUserLastname(wishlist.getUser().getLastname());
+        }
+
+        if (wishlist.getGifts() != null) {
+            dto.setGiftsNames(wishlist.getGifts().stream()
+                    .map(Gift::getName)
+                    .toList());
+        }
+        
         return dto;
     }
 }

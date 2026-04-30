@@ -36,7 +36,7 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public WishlistDTO getById(Long id) {
         return wishlistMapper.toDTO(
-                wishlistRepository.findById(id)
+                wishlistRepository.findByIdWithUser(id)
                         .orElseThrow(() -> new RuntimeException("Liste introuvable"))
         );
     }

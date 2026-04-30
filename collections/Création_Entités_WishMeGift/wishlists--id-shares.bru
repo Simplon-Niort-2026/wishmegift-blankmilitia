@@ -1,5 +1,5 @@
 meta {
-  name: Partager Wishlist
+  name: /wishlists/:id/shares
   type: http
   seq: 7
 }
@@ -17,9 +17,7 @@ headers {
 
 body:json {
   {
-    "targetUserEmail": "tom.smith@example.com",
-    "targetUserFirstname": "Tom",
-    "targetUserLastname": "Smith"
+    "targetUserEmail": "tom.smith@example.com"
   }
 }
 
