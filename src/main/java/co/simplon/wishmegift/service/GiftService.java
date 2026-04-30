@@ -1,5 +1,6 @@
 package co.simplon.wishmegift.service;
 
+import co.simplon.wishmegift.dto.GiftDTO;
 import co.simplon.wishmegift.entity.Gift;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -7,13 +8,14 @@ import java.util.List;
 @Service
 public interface GiftService {
 
-    public List<Gift> getAllGifts();
 
-    public Gift getGiftById(Long id);
+    List<GiftDTO> getAll();
 
-    public Gift save(Gift gift);
+    public GiftDTO getGiftById(Long id);
 
-    public Gift updateGift(Gift existingGift, Gift gift);
+    public GiftDTO save(Gift gift);
+
+    public GiftDTO updateGift(Gift gift);
 
     public void deleteGift(Long id);
 }
